@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Software Quality Evaluation</title>
+<style>
+  :root {
+    --primary: #f8a01b;
+    --bg: #fff8ee;
+    --border: #ddd;
+  }
+  body {
+    font-family: "Poppins", Arial, sans-serif;
+    background-color: #fafafa;
+    color: #333;
+    padding: 20px;
+    margin: 0;
+  }
+  h1 {
+    text-align: center;
+    color: var(--primary);
+    margin-bottom: 20px;
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+    background: white;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    border-radius: 10px;
+    overflow: hidden;
+  }
+  th, td {
+    border: 1px solid var(--border);
+    text-align: center;
+    padding: 10px;
+  }
+  th {
+    background-color: var(--primary);
+    color: white;
+  }
+  td input {
+    width: 60px;
+    text-align: center;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 4px;
+  }
+  input:focus {
+    outline: 2px solid var(--primary);
+  }
+  .section-header {
+    background-color: var(--primary);
+    color: white;
+    font-weight: bold;
+    text-align: left;
+    padding-left: 10px;
+  }
+  .total-row {
+    background-color: #f1f1f1;
+    font-weight: bold;
+  }
+  .percent {
+    font-size: 0.8rem;
+    color: #666;
+  }
+  .button-group {
+    text-align: center;
+    margin-top: 25px;
+  }
+  button {
+    background-color: var(--primary);
+    border: none;
+    color: white;
+    padding: 10px 18px;
+    margin: 5px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  button:hover {
+    background-color: #e38d00;
+  }
+  @media (max-width: 768px) {
+    td input { width: 45px; }
+    th, td { padding: 8px; font-size: 0.9rem; }
+  }
+</style>
+</head>
+<body>
+
+<h1>Software Quality Evaluation</h1>
+
+<table id="evaluationTable">
+  <thead>
+    <tr>
+      <th>CRITERIA</th>
+      <th>5</th>
+      <th>4</th>
+      <th>3</th>
+      <th>2</th>
+      <th>1</th>
+      <th>Mean</th>
+    </tr>
+  </thead>
+  <tbody>
+
+    <!-- Functional Suitability -->
+    <tr><td colspan="7" class="section-header">Functional Suitability</td></tr>
+    <tr><td>Functional Completeness</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Functional Correctness</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Functional Appropriateness</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Functional Suitability</td><td class="generalMean"></td></tr>
+
+    <!-- Performance Efficiency -->
+    <tr><td colspan="7" class="section-header">Performance Efficiency</td></tr>
+    <tr><td>Time Behavior</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Resource Utilization</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Capacity</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Performance Efficiency</td><td class="generalMean"></td></tr>
+
+    <!-- Reliability -->
+    <tr><td colspan="7" class="section-header">Reliability</td></tr>
+    <tr><td>Faultlessness</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Availability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Fault Tolerance</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Recoverability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Reliability</td><td class="generalMean"></td></tr>
+
+    <!-- Security -->
+    <tr><td colspan="7" class="section-header">Security</td></tr>
+    <tr><td>Confidentiality</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Integrity</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Non-repudiation</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Accountability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Authenticity</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Resistance</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Security</td><td class="generalMean"></td></tr>
+
+    <!-- Maintainability -->
+    <tr><td colspan="7" class="section-header">Maintainability</td></tr>
+    <tr><td>Modularity</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Reusability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Analyzability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Modifiability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Testability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Maintainability</td><td class="generalMean"></td></tr>
+
+    <!-- Flexibility -->
+    <tr><td colspan="7" class="section-header">Flexibility</td></tr>
+    <tr><td>Adaptability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Scalability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Installability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Replaceability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Flexibility</td><td class="generalMean"></td></tr>
+
+    <!-- Safety -->
+    <tr><td colspan="7" class="section-header">Safety</td></tr>
+    <tr><td>Operational Constraints</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Risk Identification</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Fail-Safe</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Hazard Warning</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr><td>Self-Integration</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
+    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Safety</td><td class="generalMean"></td></tr>
+
+  </tbody>
+</table>
+
+<div class="button-group">
+  <label><b>Total Respondents:</b> 
+    <input type="number" id="totalRespondents" value="0">
+  </label>
+  <br><br>
+  <button onclick="computeMeans()">Compute Means</button>
+  <button onclick="resetTable()">Reset</button>
+</div>
+
+<script>
+function computeMeans() {
+  const totalRespondents = parseFloat(document.getElementById("totalRespondents").value) || 0;
+  const rows = document.querySelectorAll("#evaluationTable tbody tr");
+  let sectionSum = 0, sectionCount = 0;
+
+  rows.forEach((row, i) => {
+    if (row.classList.contains("section-header")) {
+      sectionSum = 0;
+      sectionCount = 0;
+    } else if (row.classList.contains("total-row")) {
+      const mean = sectionCount > 0 ? (sectionSum / sectionCount).toFixed(2) : "0.00";
+      row.querySelector(".generalMean").textContent = mean;
+    } else {
+      const inputs = row.querySelectorAll("input");
+      if (inputs.length === 5) {
+        const [r5, r4, r3, r2, r1] = [...inputs].map(i => parseFloat(i.value) || 0);
+        const percents = row.querySelectorAll(".percent");
+        const total = totalRespondents || 1;
+        const pcts = [r5, r4, r3, r2, r1].map(v => ((v / total) * 100).toFixed(2) + "%");
+        percents.forEach((p, idx) => p.textContent = pcts[idx]);
+        const mean = totalRespondents > 0 ? (((r5*5)+(r4*4)+(r3*3)+(r2*2)+(r1*1))/totalRespondents).toFixed(2) : "0.00";
+        row.querySelector(".mean").textContent = mean;
+        sectionSum += parseFloat(mean);
+        sectionCount++;
+      }
+    }
+  });
+}
+
+function resetTable() {
+  document.getElementById("totalRespondents").value = 0;
+  document.querySelectorAll("input[type='number']").forEach(i => i.value = 0);
+  document.querySelectorAll(".percent").forEach(p => p.textContent = "");
+  document.querySelectorAll(".mean, .generalMean").forEach(m => m.textContent = "");
+}
+</script>
+
+</body>
+</html>
