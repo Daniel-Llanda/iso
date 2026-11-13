@@ -5,236 +5,243 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Software Quality Evaluation</title>
 <style>
-  :root {
-    --primary: #0C2B4E;
-    --bg: #fff8ee;
-    --border: #ddd;
-  }
-  body {
-    font-family: "Poppins", Arial, sans-serif;
-    background-color: #fafafa;
-    color: #333;
-    padding: 20px;
-    display:flex;
-    justify-content:center;
-  }
-  h1 {
-    text-align: center;
-    color: var(--primary);
-    margin-bottom: 20px;
-  }
-  table {
-    border-collapse: collapse;
-    width: 80%;
-    background: white;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    border-radius: 10px;
-    overflow: hidden;
-  }
-  th, td {
-    border: 1px solid var(--border);
-    text-align: center;
-    padding: 10px;
-  }
-  th {
-    background-color: var(--primary);
-    color: white;
-  }
-  td input {
-    width: 60px;
-    text-align: center;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 4px;
-  }
-  input:focus {
-    outline: 2px solid var(--primary);
-  }
-  .section-header {
-    background-color: var(--primary);
-    color: white;
-    font-weight: bold;
-    text-align: left;
-    padding-left: 10px;
-  }
-  .total-row {
-    background-color: #f1f1f1;
-    font-weight: bold;
-  }
-  .percent {
-    font-size: 0.8rem;
-    color: #666;
-  }
-  .button-group {
-    text-align: center;
-    margin-top: 25px;
-  }
-  button {
-    background-color: var(--primary);
-    border: none;
-    color: white;
-    padding: 10px 18px;
-    margin: 5px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: 0.3s;
-  }
-  button:hover {
-    background-color: #e38d00;
-  }
-  @media (max-width: 768px) {
-    td input { width: 45px; }
-    th, td { padding: 8px; font-size: 0.9rem; }
-  }
+  :root { --primary:#0C2B4E; --border:#ddd; }
+  * { box-sizing:border-box; }
+  body { font-family:"Poppins",Arial,sans-serif; background:#fafafa; color:#333; padding:20px; margin:0; }
+  .container { width:100%; max-width:1250px; margin:auto; }
+  h1 { text-align:center; color:var(--primary); margin:10px 0 8px; }
+  .subtitle { text-align:center; color:#666; margin:0 0 20px; }
+  .instructions { background:#eef3f8; border-left:4px solid var(--primary); padding:12px 15px; margin-bottom:18px; border-radius:5px; }
+  .table-wrap { overflow-x:auto; background:white; border-radius:10px; box-shadow:0 4px 10px rgba(0,0,0,.08); }
+  table { border-collapse:collapse; width:100%; min-width:850px; background:white; }
+  th,td { border:1px solid var(--border); text-align:center; padding:10px; }
+  th { background:var(--primary); color:white; position:sticky; top:0; }
+  th:first-child, td:first-child { text-align:left; min-width:310px; }
+  .section-header { background:var(--primary); color:white; font-weight:bold; text-align:left; }
+  .criterion-name { font-weight:600; }
+  .description { display:block; color:#666; font-size:.82rem; font-weight:normal; margin-top:4px; }
+  td input { width:58px; max-width:100%; text-align:center; border:1px solid #ccc; border-radius:5px; padding:6px 3px; }
+  input:focus { outline:2px solid var(--primary); }
+  .percent { font-size:.75rem; color:#666; min-height:14px; }
+  .total-row { background:#f1f1f1; font-weight:bold; }
+  .controls { display:flex; flex-wrap:wrap; align-items:center; justify-content:center; gap:12px; margin:22px 0; }
+  .controls label { font-weight:600; }
+  .controls input { width:100px; padding:9px; border:1px solid #bbb; border-radius:6px; }
+  button { background:var(--primary); border:0; color:white; padding:10px 18px; border-radius:8px; font-weight:600; cursor:pointer; }
+  button:hover { background:#e38d00; }
+  .scale { margin:16px 0; padding:14px; background:white; border:1px solid var(--border); border-radius:8px; }
+  .scale p { margin:5px 0; }
+  .note { color:#666; font-size:.88rem; margin:10px 0 24px; }
+  @media(max-width:600px) { body {padding:10px} h1 {font-size:1.35rem} }
+  @media print { body {padding:0;background:white} .controls, .instructions {display:none} .table-wrap {box-shadow:none;overflow:visible} table {min-width:0;font-size:9px} td,th {padding:5px} .description {font-size:7px} }
 </style>
 </head>
 <body>
-
-<h1>Software Quality Evaluation</h1>
-
-<table id="evaluationTable">
-  <thead>
-    <tr>
-      <th>CRITERIA</th>
-      <th>5</th>
-      <th>4</th>
-      <th>3</th>
-      <th>2</th>
-      <th>1</th>
-      <th>Mean</th>
-    </tr>
-  </thead>
-  <tbody>
-
-    <!-- Functional Suitability -->
-    <tr><td colspan="7" class="section-header">Functional Suitability</td></tr>
-    <tr><td>Functional Completeness</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Functional Correctness</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Functional Appropriateness</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Functional Suitability</td><td class="generalMean"></td></tr>
-    
-    <tr><td colspan="7" class="section-header">INTERACTION CAPABILITY</td></tr>
-    <tr><td>Appropriateness Recognizability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Learnability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Operability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>User Error Protection</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>User Engagement</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Inclusivity</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    
-    <tr><td>User Assistance</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Self-descriptiveness </td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    
-    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Interaction Capability</td><td class="generalMean"></td></tr>
-
-
-    <!-- Performance Efficiency -->
-    <tr><td colspan="7" class="section-header">Performance Efficiency</td></tr>
-    <tr><td>Time Behavior</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Resource Utilization</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Capacity</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Performance Efficiency</td><td class="generalMean"></td></tr>
-
-    <!-- Reliability -->
-    <tr><td colspan="7" class="section-header">Reliability</td></tr>
-    <tr><td>Faultlessness</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Availability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Fault Tolerance</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Recoverability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Reliability</td><td class="generalMean"></td></tr>
-
-    <!-- Security -->
-    <tr><td colspan="7" class="section-header">Security</td></tr>
-    <tr><td>Confidentiality</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Integrity</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Non-repudiation</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Accountability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Authenticity</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Resistance</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Security</td><td class="generalMean"></td></tr>
-
-    <!-- Maintainability -->
-    <tr><td colspan="7" class="section-header">Maintainability</td></tr>
-    <tr><td>Modularity</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Reusability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Analyzability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Modifiability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Testability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Maintainability</td><td class="generalMean"></td></tr>
-
-    <!-- Flexibility -->
-    <tr><td colspan="7" class="section-header">Flexibility</td></tr>
-    <tr><td>Adaptability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Scalability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Installability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Replaceability</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Flexibility</td><td class="generalMean"></td></tr>
-
-    <!-- Safety -->
-    <tr><td colspan="7" class="section-header">Safety</td></tr>
-    <tr><td>Operational Constraints</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Risk Identification</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Fail-Safe</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Hazard Warning</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr><td>Self-Integration</td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td><input type="number" value="0"><div class="percent"></div></td><td class="mean"></td></tr>
-    <tr class="total-row"><td colspan="6">General Weighted Mean Based on Safety</td><td class="generalMean"></td></tr>
-
-  </tbody>
-</table>
-
-<div class="button-group">
-  <label><b>Total Respondents:</b> 
-    <input type="number" id="totalRespondents" value="0">
-  </label>
-  <br><br>
-  <button onclick="computeMeans()">Compute Means</button>
-  <button onclick="resetTable()">Reset</button>
+<div class="container">
+  <h1>Software Quality Evaluation</h1>
+  <p class="subtitle">Software Product Quality Assessment</p>
+  <div class="instructions">
+    Enter the number of respondents who selected each rating for every criterion. The total for each criterion should equal the total number of respondents.
+  </div>
+  <div class="scale">
+    <strong>Rating Scale</strong>
+    <p>5 – Excellent &nbsp; | &nbsp; 4 – Very Good &nbsp; | &nbsp; 3 – Good &nbsp; | &nbsp; 2 – Fair &nbsp; | &nbsp; 1 – Poor</p>
+  </div>
+  <div class="table-wrap">
+    <table id="evaluationTable">
+      <thead><tr><th>CRITERIA</th><th>5</th><th>4</th><th>3</th><th>2</th><th>1</th><th>Mean</th></tr></thead>
+      <tbody>
+        <tr><td colspan="7" class="section-header">FUNCTIONAL SUITABILITY</td></tr><tr class="criterion-row" data-description="Functionality covers the required tasks.">
+          <td class="criterion-name">Functional Completeness<span class="description">Functionality covers the required tasks.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Functional Completeness rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Functional Completeness rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Functional Completeness rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Functional Completeness rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Functional Completeness rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The system provides appropriate results accurately.">
+          <td class="criterion-name">Functional Correctness<span class="description">The system provides appropriate results accurately.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Functional Correctness rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Functional Correctness rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Functional Correctness rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Functional Correctness rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Functional Correctness rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The system's functions accomplish the desired tasks and objectives.">
+          <td class="criterion-name">Functional Appropriateness<span class="description">The system's functions accomplish the desired tasks and objectives.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Functional Appropriateness rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Functional Appropriateness rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Functional Appropriateness rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Functional Appropriateness rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Functional Appropriateness rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="total-row"><td colspan="6">General Weighted Mean Based on Functional Suitability</td><td class="generalMean">—</td></tr><tr><td colspan="7" class="section-header">PERFORMANCE EFFICIENCY</td></tr><tr class="criterion-row" data-description="Response and processing time are acceptable when performing specific functions.">
+          <td class="criterion-name">Time Behavior<span class="description">Response and processing time are acceptable when performing specific functions.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Time Behavior rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Time Behavior rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Time Behavior rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Time Behavior rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Time Behavior rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The amount and types of resources used by the system meet user requirements.">
+          <td class="criterion-name">Resource Utilization<span class="description">The amount and types of resources used by the system meet user requirements.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Resource Utilization rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Resource Utilization rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Resource Utilization rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Resource Utilization rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Resource Utilization rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="Limitations such as internet speed, database size, and processing capacity do not negatively affect system performance.">
+          <td class="criterion-name">Capacity<span class="description">Limitations such as internet speed, database size, and processing capacity do not negatively affect system performance.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Capacity rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Capacity rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Capacity rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Capacity rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Capacity rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="total-row"><td colspan="6">General Weighted Mean Based on Performance Efficiency</td><td class="generalMean">—</td></tr><tr><td colspan="7" class="section-header">COMPATIBILITY</td></tr><tr class="criterion-row" data-description="The system works alongside other software on different platforms, operating systems, or web browsers.">
+          <td class="criterion-name">Co-existence<span class="description">The system works alongside other software on different platforms, operating systems, or web browsers.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Co-existence rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Co-existence rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Co-existence rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Co-existence rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Co-existence rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The system can exchange information with other systems or units of the organization.">
+          <td class="criterion-name">Interoperability<span class="description">The system can exchange information with other systems or units of the organization.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Interoperability rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Interoperability rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Interoperability rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Interoperability rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Interoperability rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="total-row"><td colspan="6">General Weighted Mean Based on Compatibility</td><td class="generalMean">—</td></tr><tr><td colspan="7" class="section-header">USABILITY</td></tr><tr class="criterion-row" data-description="Manuals, tutorials, demonstrations, and other documentation are appropriately provided to help users recognize whether the system is suitable for their needs.">
+          <td class="criterion-name">Appropriateness Recognizability<span class="description">Manuals, tutorials, demonstrations, and other documentation are appropriately provided to help users recognize whether the system is suitable for their needs.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Appropriateness Recognizability rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Appropriateness Recognizability rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Appropriateness Recognizability rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Appropriateness Recognizability rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Appropriateness Recognizability rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The intended users can easily learn how to use the system.">
+          <td class="criterion-name">Learnability<span class="description">The intended users can easily learn how to use the system.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Learnability rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Learnability rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Learnability rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Learnability rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Learnability rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The system's functions are designed to be easy for users to operate.">
+          <td class="criterion-name">Operability<span class="description">The system's functions are designed to be easy for users to operate.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Operability rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Operability rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Operability rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Operability rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Operability rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The system protects users from making errors.">
+          <td class="criterion-name">User Error Protection<span class="description">The system protects users from making errors.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="User Error Protection rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="User Error Protection rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="User Error Protection rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="User Error Protection rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="User Error Protection rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The interface, including its colors and icons, provides a pleasing and satisfying user experience.">
+          <td class="criterion-name">User Interface Aesthetics<span class="description">The interface, including its colors and icons, provides a pleasing and satisfying user experience.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="User Interface Aesthetics rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="User Interface Aesthetics rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="User Interface Aesthetics rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="User Interface Aesthetics rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="User Interface Aesthetics rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The system can be accessed by its intended users through the available internet or intranet connection.">
+          <td class="criterion-name">Accessibility<span class="description">The system can be accessed by its intended users through the available internet or intranet connection.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Accessibility rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Accessibility rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Accessibility rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Accessibility rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Accessibility rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="total-row"><td colspan="6">General Weighted Mean Based on Usability</td><td class="generalMean">—</td></tr><tr><td colspan="7" class="section-header">RELIABILITY</td></tr><tr class="criterion-row" data-description="System components meet reliability needs during normal operation.">
+          <td class="criterion-name">Maturity<span class="description">System components meet reliability needs during normal operation.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Maturity rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Maturity rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Maturity rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Maturity rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Maturity rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The system is operational and accessible when required.">
+          <td class="criterion-name">Availability<span class="description">The system is operational and accessible when required.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Availability rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Availability rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Availability rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Availability rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Availability rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The system continues to operate as intended despite hardware or software faults.">
+          <td class="criterion-name">Fault Tolerance<span class="description">The system continues to operate as intended despite hardware or software faults.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Fault Tolerance rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Fault Tolerance rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Fault Tolerance rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Fault Tolerance rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Fault Tolerance rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="After an interruption or failure, the system can recover affected data and return to its normal state.">
+          <td class="criterion-name">Recoverability<span class="description">After an interruption or failure, the system can recover affected data and return to its normal state.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Recoverability rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Recoverability rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Recoverability rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Recoverability rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Recoverability rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="total-row"><td colspan="6">General Weighted Mean Based on Reliability</td><td class="generalMean">—</td></tr><tr><td colspan="7" class="section-header">SECURITY</td></tr><tr class="criterion-row" data-description="The system ensures that data are accessible only to authorized users.">
+          <td class="criterion-name">Confidentiality<span class="description">The system ensures that data are accessible only to authorized users.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Confidentiality rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Confidentiality rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Confidentiality rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Confidentiality rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Confidentiality rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The system prevents unauthorized access to or modification of programs or data.">
+          <td class="criterion-name">Integrity<span class="description">The system prevents unauthorized access to or modification of programs or data.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Integrity rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Integrity rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Integrity rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Integrity rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Integrity rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="total-row"><td colspan="6">General Weighted Mean Based on Security</td><td class="generalMean">—</td></tr><tr><td colspan="7" class="section-header">MAINTAINABILITY</td></tr><tr class="criterion-row" data-description="A failure in one system component has minimal impact on other components.">
+          <td class="criterion-name">Modularity<span class="description">A failure in one system component has minimal impact on other components.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Modularity rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Modularity rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Modularity rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Modularity rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Modularity rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="Parts or components of the system can be reused by other parts or systems.">
+          <td class="criterion-name">Reusability<span class="description">Parts or components of the system can be reused by other parts or systems.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Reusability rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Reusability rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Reusability rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Reusability rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Reusability rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="System errors or failures can be easily diagnosed and their causes identified.">
+          <td class="criterion-name">Analyzability<span class="description">System errors or failures can be easily diagnosed and their causes identified.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Analyzability rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Analyzability rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Analyzability rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Analyzability rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Analyzability rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The system can be modified efficiently without introducing defects or reducing existing quality.">
+          <td class="criterion-name">Modifiability<span class="description">The system can be modified efficiently without introducing defects or reducing existing quality.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Modifiability rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Modifiability rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Modifiability rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Modifiability rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Modifiability rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The system can be tested effectively and efficiently to determine whether established criteria have been met.">
+          <td class="criterion-name">Testability<span class="description">The system can be tested effectively and efficiently to determine whether established criteria have been met.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Testability rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Testability rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Testability rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Testability rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Testability rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="total-row"><td colspan="6">General Weighted Mean Based on Maintainability</td><td class="generalMean">—</td></tr><tr><td colspan="7" class="section-header">PORTABILITY</td></tr><tr class="criterion-row" data-description="The system can be adapted efficiently to different or changing hardware, software, or operating environments.">
+          <td class="criterion-name">Adaptability<span class="description">The system can be adapted efficiently to different or changing hardware, software, or operating environments.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Adaptability rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Adaptability rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Adaptability rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Adaptability rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Adaptability rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The system can be installed or uninstalled effectively and efficiently in a specified environment.">
+          <td class="criterion-name">Installability<span class="description">The system can be installed or uninstalled effectively and efficiently in a specified environment.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Installability rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Installability rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Installability rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Installability rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Installability rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="criterion-row" data-description="The system can replace other software designed for the same purpose in the same environment.">
+          <td class="criterion-name">Replaceability<span class="description">The system can replace other software designed for the same purpose in the same environment.</span></td>
+          <td><input type="number" min="0" step="1" value="0" aria-label="Replaceability rating 5"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Replaceability rating 4"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Replaceability rating 3"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Replaceability rating 2"><div class="percent"></div></td><td><input type="number" min="0" step="1" value="0" aria-label="Replaceability rating 1"><div class="percent"></div></td>
+          <td class="mean">—</td>
+        </tr><tr class="total-row"><td colspan="6">General Weighted Mean Based on Portability</td><td class="generalMean">—</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <div class="controls">
+    <label for="totalRespondents">Total Respondents:</label>
+    <input type="number" id="totalRespondents" min="1" step="1" value="0">
+    <button type="button" onclick="computeMeans()">Compute Means</button>
+    <button type="button" onclick="resetTable()">Reset</button>
+    <button type="button" onclick="window.print()">Print</button>
+  </div>
+  <p class="note">Mean per criterion = [(5 × number of rating-5 responses) + (4 × rating-4 responses) + (3 × rating-3 responses) + (2 × rating-2 responses) + (1 × rating-1 responses)] ÷ total respondents. The general weighted mean is the average of the criterion means within each quality characteristic.</p>
 </div>
-
 <script>
 function computeMeans() {
-  const totalRespondents = parseFloat(document.getElementById("totalRespondents").value) || 0;
-  const rows = document.querySelectorAll("#evaluationTable tbody tr");
-  let sectionSum = 0, sectionCount = 0;
+  const totalRespondents = Number(document.getElementById("totalRespondents").value);
+  if (!Number.isInteger(totalRespondents) || totalRespondents <= 0) {
+    alert("Please enter a valid total number of respondents greater than zero.");
+    return;
+  }
 
-  rows.forEach((row, i) => {
-    if (row.classList.contains("section-header")) {
-      sectionSum = 0;
-      sectionCount = 0;
-    } else if (row.classList.contains("total-row")) {
-      const mean = sectionCount > 0 ? (sectionSum / sectionCount).toFixed(2) : "0.00";
-      row.querySelector(".generalMean").textContent = mean;
-    } else {
-      const inputs = row.querySelectorAll("input");
-      if (inputs.length === 5) {
-        const [r5, r4, r3, r2, r1] = [...inputs].map(i => parseFloat(i.value) || 0);
-        const percents = row.querySelectorAll(".percent");
-        const total = totalRespondents || 1;
-        const pcts = [r5, r4, r3, r2, r1].map(v => ((v / total) * 100).toFixed(2) + "%");
-        percents.forEach((p, idx) => p.textContent = pcts[idx]);
-        const mean = totalRespondents > 0 ? (((r5*5)+(r4*4)+(r3*3)+(r2*2)+(r1*1))/totalRespondents).toFixed(2) : "0.00";
-        row.querySelector(".mean").textContent = mean;
-        sectionSum += parseFloat(mean);
-        sectionCount++;
+  document.querySelectorAll("#evaluationTable tbody tr.criterion-row").forEach(row => {
+    const inputs = [...row.querySelectorAll('input[type="number"]')];
+    const values = inputs.map(input => Math.max(0, Number(input.value) || 0));
+    const responseTotal = values.reduce((sum, value) => sum + value, 0);
+    const percentCells = row.querySelectorAll(".percent");
+
+    inputs.forEach((input, index) => {
+      if (!Number.isInteger(values[index])) {
+        input.setCustomValidity("Enter whole-number respondent counts.");
+      } else {
+        input.setCustomValidity("");
       }
+      percentCells[index].textContent = ((values[index] / totalRespondents) * 100).toFixed(2) + "%";
+    });
+
+    if (values.some(value => !Number.isInteger(value))) {
+      alert("Please use whole numbers for all respondent counts.");
+      return;
     }
+    if (responseTotal !== totalRespondents) {
+      row.querySelector(".mean").textContent = "Check total";
+      row.querySelector(".mean").title = `Entered responses: ${responseTotal}; expected: ${totalRespondents}`;
+      return;
+    }
+
+    const weightedSum = values.reduce((sum, value, index) => sum + value * [5,4,3,2,1][index], 0);
+    row.querySelector(".mean").textContent = (weightedSum / totalRespondents).toFixed(2);
+    row.querySelector(".mean").title = "";
+  });
+
+  document.querySelectorAll("#evaluationTable tbody tr.total-row").forEach(totalRow => {
+    const sectionRows = [];
+    let previous = totalRow.previousElementSibling;
+    while (previous && !previous.classList.contains("section-header")) {
+      if (previous.classList.contains("criterion-row")) sectionRows.unshift(previous);
+      previous = previous.previousElementSibling;
+    }
+    const means = sectionRows.map(row => row.querySelector(".mean").textContent);
+    const validMeans = means.filter(value => /^\d+(\.\d+)?$/.test(value)).map(Number);
+    totalRow.querySelector(".generalMean").textContent =
+      validMeans.length === sectionRows.length && sectionRows.length
+        ? (validMeans.reduce((a,b) => a+b, 0) / validMeans.length).toFixed(2)
+        : "Check responses";
   });
 }
 
 function resetTable() {
   document.getElementById("totalRespondents").value = 0;
-  document.querySelectorAll("input[type='number']").forEach(i => i.value = 0);
-  document.querySelectorAll(".percent").forEach(p => p.textContent = "");
-  document.querySelectorAll(".mean, .generalMean").forEach(m => m.textContent = "");
+  document.querySelectorAll("#evaluationTable input[type='number']").forEach(input => {
+    input.value = 0;
+    input.setCustomValidity("");
+  });
+  document.querySelectorAll(".percent").forEach(cell => cell.textContent = "");
+  document.querySelectorAll(".mean, .generalMean").forEach(cell => {
+    cell.textContent = "—";
+    cell.removeAttribute("title");
+  });
 }
 </script>
-
 </body>
 </html>
-
-
-
-
-
-
-
